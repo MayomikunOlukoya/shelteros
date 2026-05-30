@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 export default function Page() {
   return (
@@ -6,8 +7,12 @@ export default function Page() {
       <nav className="flex items-center justify-between px-8 py-4 border-b border-gray-100">
         <span className="text-xl font-semibold tracking-tight">ShelterOS</span>
         <div className="flex items-center gap-3">
-          <Button variant="ghost">Sign in</Button>
-          <Button>Get started</Button>
+          <Link href="/sign-in">
+            <Button variant="ghost">Sign in</Button>
+          </Link>
+          <Link href="/sign-up">
+            <Button>Get started</Button>
+          </Link>
         </div>
       </nav>
 
@@ -23,7 +28,9 @@ export default function Page() {
           and rent-to-own opportunity — and tells you exactly what you qualify for.
         </p>
         <div className="flex items-center gap-4">
-          <Button size="lg">Find housing now</Button>
+          <Link href="/sign-up">
+            <Button size="lg">Find housing now</Button>
+          </Link>
           <Button size="lg" variant="outline">How it works</Button>
         </div>
       </section>
