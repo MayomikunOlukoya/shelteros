@@ -1,12 +1,12 @@
 export const dynamic = 'force-dynamic'
 import { currentUser } from '@clerk/nextjs/server'
-import { db } from '@/lib/db'
+import { getDb } from '@/lib/db'
 import { listings } from '@/lib/schema'
 import Link from 'next/link'
 
 export default async function DashboardPage() {
   const user = await currentUser()
-  const allListings = await db.select().from(listings)
+  const allListings = await getDb().select().from(listings)
 
   return (
     <div>

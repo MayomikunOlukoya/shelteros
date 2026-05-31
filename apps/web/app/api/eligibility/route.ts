@@ -1,6 +1,7 @@
 export const dynamic = 'force-dynamic'
 import Anthropic from '@anthropic-ai/sdk'
-import { db } from '@/lib/db'
+import { getDb } from '@/lib/db'
+const allListings = await getDb().select().from(listings)
 import { listings } from '@/lib/schema'
 
 const anthropic = new Anthropic({
@@ -10,7 +11,7 @@ const anthropic = new Anthropic({
 export async function POST(request: Request) {
   const { situation } = await request.json()
 
-  const allListings = await db.select().from(listings)
+ const allListings = await getDb().select().from(listings)
 
   const listingsSummary = allListings
     .map(l => `- ${l.title} (${l.scheme}, ${l.city} ${l.country}, £${l.monthlyRent}/mo, ${l.bedrooms} bed)`)
