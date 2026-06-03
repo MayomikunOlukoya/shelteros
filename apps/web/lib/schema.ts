@@ -49,3 +49,14 @@ export const applications = pgTable('applications', {
   message: text('message'),
   createdAt: timestamp('created_at').defaultNow().notNull(),
 })
+
+export const payments = pgTable('payments', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  stripeSessionId: text('stripe_session_id').notNull().unique(),
+  listingId: uuid('listing_id').notNull(),
+  tenantClerkId: text('tenant_clerk_id').notNull(),
+  amount: integer('amount').notNull(),
+  currency: text('currency').notNull(),
+  status: text('status').notNull().default('succeeded'),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+})

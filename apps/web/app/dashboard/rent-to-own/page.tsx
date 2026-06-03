@@ -3,6 +3,7 @@ export const dynamic = 'force-dynamic'
 import { getDb } from '@/lib/db'
 import { rentToOwnListings } from '@/lib/schema'
 import { ApplyButton } from './apply-button'
+import { PayButton } from './pay-button'
 
 function formatMoney(amount: number, country: string) {
   const symbol = country === 'US' ? '$' : country === 'Canada' ? 'C$' : '£'
@@ -60,6 +61,7 @@ export default async function RentToOwnPage() {
                 <span>🛏 {listing.bedrooms} bed</span>
               </div>
               <ApplyButton listingId={listing.id} />
+              <PayButton listingId={listing.id} />
             </div>
           )
         })}
