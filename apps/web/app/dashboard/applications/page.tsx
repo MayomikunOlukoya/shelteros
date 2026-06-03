@@ -11,22 +11,17 @@ export default async function ApplicationsPage() {
   const db = getDb()
 
   // Get the listings this landlord owns
-  const myListings = await db
-    .select()
-    .from(rentToOwnListings)
+  const rows = await db
+    .select({
+      listing: rentToOwnListings,
+      app: applications,
+    })
+    .from(applications)
+    .innerJoin(
+      rentToOwnListings,
+      eq(applications.listingId, rentToOwnListings.id)
+    )
     .where(eq(rentToOwnListings.landlordClerkId, userId!))
-
-  // For each listing, get its applications
-  const rows = []
-  for (const listing of myListings) {
-    const apps = await db
-      .select()
-      .from(applications)
-      .where(eq(applications.listingId, listing.id))
-    for (const app of apps) {
-      rows.push({ listing, app })
-    }
-  }
 
   return (
     <div>
