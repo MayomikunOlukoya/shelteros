@@ -18,6 +18,7 @@ export default function DashboardLayout({
             <Link href="/dashboard/rent-to-own" className="hover:text-gray-900">Rent to own</Link>
             <Link href="/dashboard/adu" className="hover:text-gray-900">ADU permits</Link>
             <Link href="/dashboard/prevention" className="hover:text-gray-900">Prevention</Link>
+            <Link href="/dashboard/applications" className="hover:text-gray-900">Applications</Link>
           </div>
         </div>
         <UserButton />
